@@ -23,13 +23,26 @@
 
 .blog__header__item__elem {
     display: flex;
-    width: 109px;
+    width: max-content;
+    padding-left: 15px;
+    padding-right: 15px;
     height: 51px;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    color: black ;
 }
 
 .blog__header__item__elem:hover {
     border: 1px solid #52C41A;
     color: #52C41A;
+}
+
+.logout {
+    border: 1px solid black;
+}
+
+.user {
+    display: flex;
+    column-gap: 15px;
 }

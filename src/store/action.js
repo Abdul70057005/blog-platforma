@@ -78,3 +78,174 @@ export function articleLoad(article) {
         }
     }
 }
+
+// регистрация нового пользователя
+
+export const USER_REGISTRATION = 'USER_REGISTRATION'
+export const USER_REGISTRATION_ERROR = 'USER_REGISTRATION_ERROR'
+
+export function userRegistrationError(error) {
+    return {
+        type: USER_REGISTRATION_ERROR,
+        payload: error,
+    }
+}
+
+export function userRegistration(data) {
+    console.log(JSON.stringify({user: data}))
+    const url = 'https://blog.kata.academy/api/users'
+    const options = {
+        method: 'POST',
+        headers: {
+            accept: 'application/json',
+            'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify({user: data})
+    }
+    return async (dispatch) => {
+        try {
+            let response = await fetch(url, options)
+            if(!response.ok) {
+                const errorData = await response.json()
+                dispatch(userRegistrationError(errorData))
+            } else {
+                dispatch(userRegistrationError(null))
+                const jsonData = await response.json()
+                dispatch({
+                    type: USER_REGISTRATION,
+                    payload: jsonData
+                })
+            }
+        } catch (error) {
+           
+            console.log(error)
+        }
+    }
+}
+
+// login пользователя
+
+export const USER_LOGIN = 'USER_LOGIN'
+export const USER_LOGIN_ERROR = 'USER_LOGIN_ERROR'
+
+export function userLoginError(error) {
+    return {
+        type: USER_LOGIN_ERROR,
+        payload: error,
+    }
+}
+
+export function userLogin(data) {
+    const url = 'https://blog.kata.academy/api/users/login'
+    const options = {
+        method: 'POST',
+        headers: {
+            accept: 'application/json',
+            'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify({user: data})
+    }
+    return async (dispatch) => {
+        try {
+            let response = await fetch(url, options)
+            if(!response.ok) {
+                const errorData = await response.json()
+                dispatch(userLoginError(errorData))
+            } else {
+                dispatch(userLoginError(null))
+                const jsonData = await response.json()
+                dispatch({
+                    type: USER_LOGIN,
+                    payload: jsonData
+                })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+// получить залогиненного пользователя
+
+export const USER_CURRENT = 'USER_CURRENT'
+
+export function userCurrent(token) {
+    console.log(token)
+    const url = `https://blog.kata.academy/api/user?api_key=${token}`
+    const options = {
+        headers: {
+            Authorization: `Token ${token}`,
+        }
+        
+    }
+    return async (dispatch) => {
+        try {
+            let response = await fetch(url, options)
+            if(!response.ok) {
+                throw new Error('Ошибка')
+            }
+            const jsonData = await response.json()
+            dispatch({
+                type: USER_CURRENT,
+                payload: jsonData
+            })
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+// сброс текущего пользовател log out
+
+export const LOG_OUT = 'LOG_OUT'
+
+export function logOut() {
+    return {
+        type: LOG_OUT,
+    }
+}
+
+// обновить текущего поьзователя
+
+export const USER_UPDATE = 'USER_UPDATE'
+export const USER_UPDATE_ERROR = 'USER_UPDATE_ERROR'
+
+export function userUpdateError(error) {
+    return {
+        type: USER_UPDATE_ERROR,
+        payload: error,
+    }
+}
+
+export function userUpdate(data, token) {
+    const url = 'https://blog.kata.academy/api/user'
+    const options = {
+        method: 'PUT',
+        headers: {
+            accept: 'application/json',
+            'Content-Type': 'application/json; charset=utf-8',
+            Authorization: `Token ${token}`,
+        },
+        body: JSON.stringify({user: data})
+    }
+    return async (dispatch) => {
+        try {
+            let response = await fetch(url, options)
+            if(!response.ok) {
+                const errorData = await response.json()
+                dispatch(userUpdateError(errorData))
+            } else {
+                dispatch(userUpdateError(null))
+                const jsonData = await response.json()
+                dispatch({
+                    type: USER_UPDATE,
+                    payload: jsonData
+                })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
