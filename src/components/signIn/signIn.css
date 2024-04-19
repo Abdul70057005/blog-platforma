@@ -1,66 +1,64 @@
 .signIn {
-    margin: 0 auto;
-    width: 384px;
-    height: 384px;
-    border-radius: 6px;
-    background-color: #FFFFFF;
-    margin-top: 30px;
-    box-shadow: 0px 4px 12px 0px #00000026;
-
+  margin: 0 auto;
+  width: 384px;
+  height: 384px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  margin-top: 30px;
+  box-shadow: 0px 4px 12px 0px #00000026;
 }
 
 .signIn__form {
-    display: flex;
-    flex-direction: column;
-    row-gap: 25px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
 }
 
 .signIn__wrapper {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .signIn__header {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .signIn__form__label {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 320px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 320px;
 }
 
 .signIn__form__label__input {
-    height: 35px;
-    border: 1px solid gray;
+  height: 35px;
+  border: 1px solid gray;
 }
 
 .signIn__form__label__button {
-    width: 320px;
-    height: 35px;
-    background: #1890FF;
-    color: #FFFFFF;
-    border: 0px solid;
-    margin: 0 auto;
+  width: 320px;
+  height: 35px;
+  background: #1890ff;
+  color: #ffffff;
+  border: 0px solid;
+  margin: 0 auto;
 }
 
 .signIn__form__label__text {
-    display: flex;
-    justify-content: center;
-    margin-top: -15px;
-    color: gray;
+  display: flex;
+  justify-content: center;
+  margin-top: -15px;
+  color: gray;
 }
 
 .signIn__form__error {
-    color: red;
-    margin-top: 40px;
-    position: absolute;
-    
+  color: red;
+  margin-top: 40px;
+  position: absolute;
 }
 
 .url__sign-up {
-    text-decoration: none;
-    color: #1890ff !important;
+  text-decoration: none;
+  color: #1890ff !important;
 }
