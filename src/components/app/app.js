@@ -11,7 +11,7 @@ import NewArticle from '../newArticle/newArticle'
 import ArticleEdit from '../articleEdit/articleEdit'
 import RequireAuth from '../requireAuth'
 import { useSelector, useDispatch } from 'react-redux'
-import { userCurrent, logOut } from '../../store/action'
+import { userCurrent, logOut, articlesLoad } from '../../store/action'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -44,6 +44,7 @@ const App = () => {
   const handleLogOut = () => {
     dispatch(logOut())
     document.cookie = `token=;expires=${new Date(0)}`
+    dispatch(articlesLoad())
   }
 
   return (

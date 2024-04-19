@@ -23,9 +23,16 @@ const ListArticles = () => {
   console.log(articles)
 
   useEffect(() => {
-    //document.cookie = `page=;expires=${new Date(0)}`
-    dispatch(articlesLoad(cookie.token, cookie.page))
+    if(cookie.token && cookie.page) {
+      console.log('za')
+      dispatch(articlesLoad(cookie.token, cookie.page))
+    }else {
+      console.log('va')
+      dispatch(articlesLoad())
+    }
   }, [])
+
+
 
   function getCookie() {
     return document.cookie.split('; ').reduce((acc, item) => {
