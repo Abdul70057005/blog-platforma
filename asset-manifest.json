@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.6c0eb4c8.css",
-    "main.js": "/static/js/main.046787e8.js",
-    "index.html": "/index.html",
-    "main.6c0eb4c8.css.map": "/static/css/main.6c0eb4c8.css.map",
-    "main.046787e8.js.map": "/static/js/main.046787e8.js.map"
+    "main.css": "/blog-platforma/static/css/main.6c0eb4c8.css",
+    "main.js": "/blog-platforma/static/js/main.046787e8.js",
+    "index.html": "/blog-platforma/index.html",
+    "main.6c0eb4c8.css.map": "/blog-platforma/static/css/main.6c0eb4c8.css.map",
+    "main.046787e8.js.map": "/blog-platforma/static/js/main.046787e8.js.map"
   },
   "entrypoints": [
     "static/css/main.6c0eb4c8.css",
