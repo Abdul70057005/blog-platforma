@@ -11,7 +11,7 @@ const SignIn = () => {
   const navigate = useNavigate()
   const userLog = useSelector((state) => state.listArticles.userLogin)
   const userLogError = useSelector((state) => state.listArticles.userLoginError)
-
+  const goHome = () => navigate('/', { replace: true })
   console.log(userLog)
   console.log(userLogError)
   const {
@@ -47,7 +47,6 @@ const SignIn = () => {
     }
 
     if (userLog !== null && userLogError === null) {
-      const goHome = () => navigate('/', { replace: true })
       document.cookie = `token=${userLog.token}; path=/`
       goHome()
       reset()
@@ -65,7 +64,7 @@ const SignIn = () => {
     if (cookie.token) {
       dispatch(userCurrent(cookie.token))
     }
-  }, [userLogError, userLog, navigate])
+  }, [userLogError, userLog])
 
   return (
     <div className="signIn">

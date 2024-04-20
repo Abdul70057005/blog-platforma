@@ -11,7 +11,7 @@ const SignUp = () => {
   const navigate = useNavigate()
   const user = useSelector((state) => state.listArticles.user)
   const userError = useSelector((state) => state.listArticles.userError)
-
+  const goHome = () => navigate('/', { replace: true })
   console.log(user)
   console.log(userError)
 
@@ -54,12 +54,11 @@ const SignUp = () => {
     }
 
     if (user !== null && userError === null) {
-      const goHome = () => navigate('/', { replace: true })
       goHome()
       reset()
       dispatch(userClear())
     }
-  }, [userError, user, navigate])
+  }, [userError, user])
 
   return (
     <div className="signUp">

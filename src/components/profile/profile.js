@@ -13,7 +13,7 @@ const Profile = () => {
   const updateUser = useSelector((state) => state.listArticles.userUpdate)
   const userUpdateError = useSelector((state) => state.listArticles.userUpdateError)
   const userCur = useSelector((state) => state.listArticles.userCurrent)
-
+  const goHome = () => navigate('/', { replace: true })
   console.log(userCur)
   console.log(updateUser)
   console.log(userUpdateError?.errors)
@@ -68,12 +68,11 @@ const Profile = () => {
 
   useEffect(() => {
     if (updateUser !== null && userUpdateError === null) {
-      const goHome = () => navigate('/', { replace: true })
       goHome()
       reset()
       dispatch(userClear())
     }
-  }, [updateUser, userUpdateError, navigate])
+  }, [updateUser, userUpdateError])
 
   return (
     <div className="profile">

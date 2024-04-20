@@ -14,7 +14,7 @@ const ArticleEdit = () => {
   const updateArticleError = useSelector((state) => state.articleCreateReducer.articleUpdateError)
   console.log(updateArticle)
   console.log(updateArticleError)
-
+  const goHome = () => navigate('/', { replace: true })
   const { article } = useParams()
   console.log(article)
 
@@ -60,12 +60,11 @@ const ArticleEdit = () => {
 
   useEffect(() => {
     if (updateArticle !== null && updateArticleError === null) {
-      const goHome = () => navigate('/', { replace: true })
       goHome()
       reset()
       dispatch(articleUpdateClear())
     }
-  }, [updateArticle, updateArticleError, navigate])
+  }, [updateArticle, updateArticleError])
 
   return (
     <div className="articleEdit">

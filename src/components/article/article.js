@@ -24,7 +24,7 @@ const Article = () => {
   const deleteArticleError = useSelector((state) => state.articleCreateReducer.articleDeleteError)
   const favoriteArticle = useSelector((state) => state.articleCreateReducer.articleFavorite)
   const deleteFavoriteArticle = useSelector((state) => state.articleCreateReducer.articleDeleteFavorite)
-
+  const goHome = () => navigate('/', { replace: true })
   console.log(e)
   console.log(userCur)
   function getCookie() {
@@ -44,11 +44,10 @@ const Article = () => {
 
   useEffect(() => {
     if (deleteArticle !== null && deleteArticleError === null) {
-      const goHome = () => navigate('/', { replace: true })
       goHome()
       dispatch(articleUpdateClear())
     }
-  }, [deleteArticle, deleteArticleError, navigate])
+  }, [deleteArticle, deleteArticleError])
 
   useEffect(() => {
     dispatch(articleLoad(article, cookie.token))
