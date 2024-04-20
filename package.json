@@ -2,7 +2,7 @@
   "name": "blog-platforma",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://abdul70057005.github.io/",
+  "homepage": "https://abdul70057005.github.io/blog-platforma/",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",
     "@testing-library/jest-dom": "^5.17.0",
