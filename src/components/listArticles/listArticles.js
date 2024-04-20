@@ -15,6 +15,7 @@ const ListArticles = () => {
   const favoriteArticleError = useSelector((state) => state.articleCreateReducer.articleFavoriteError)
   const deleteFavoriteArticle = useSelector((state) => state.articleCreateReducer.articleDeleteFavorite)
   const deleteFavoriteArticleError = useSelector((state) => state.articleCreateReducer.articleDeleteFavoriteError)
+  const userCur = useSelector((state) => state.listArticles.userCurrent)
 
   console.log(favoriteArticle)
   console.log(favoriteArticleError)
@@ -22,12 +23,21 @@ const ListArticles = () => {
   console.log(deleteFavoriteArticleError)
   console.log(articles)
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (cookie.token && cookie.page) {
       console.log('za')
       dispatch(articlesLoad(cookie.token, cookie.page))
     } else {
       console.log('va')
+      dispatch(articlesLoad())
+    }
+  }, [])*/
+
+  useEffect(() => {
+    if (userCur) {
+      dispatch(articlesLoad(cookie.token, cookie.page))
+    }
+    if (!userCur) {
       dispatch(articlesLoad())
     }
   }, [])
