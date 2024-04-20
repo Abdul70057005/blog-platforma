@@ -11,7 +11,7 @@ import Profile from '../profile/profile'
 import NewArticle from '../newArticle/newArticle'
 import ArticleEdit from '../articleEdit/articleEdit'
 import RequireAuth from '../requireAuth'
-import { userCurrent, logOut, articlesLoad } from '../../store/action'
+import { userCurrent, logOut } from '../../store/action'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -43,8 +43,8 @@ const App = () => {
 
   const handleLogOut = () => {
     dispatch(logOut())
-    document.cookie = `token=;expires=${new Date(0)}`
-    dispatch(articlesLoad())
+    document.cookie = `token=;page=;expires=${new Date(0)}`
+    //dispatch(articlesLoad())
   }
 
   return (
