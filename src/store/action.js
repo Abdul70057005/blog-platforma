@@ -32,7 +32,7 @@ export function articlesLoad(token = null, page = 1) {
   if (cookie.page) {
     page = cookie.page
   }
-  console.log(typeof page)
+  
   let offset
   if (page === '1') {
     offset = 0
