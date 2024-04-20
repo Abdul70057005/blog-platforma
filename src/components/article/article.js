@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react'
 import './article.css'
+import { useParams, Link, useNavigate } from 'react-router-dom/dist'
+import { useDispatch, useSelector } from 'react-redux'
+import { format } from 'date-fns'
+import Markdown from 'react-markdown'
+import { Spin, Button, message, Popconfirm } from 'antd'
+
 import {
   articleLoad,
   articleDelete,
@@ -7,12 +13,6 @@ import {
   articleFavorite,
   articleDeleteFavorite,
 } from '../../store/action'
-import { useParams } from 'react-router-dom/dist'
-import { useDispatch, useSelector } from 'react-redux'
-import { format } from 'date-fns'
-import Markdown from 'react-markdown'
-import { Spin, Button, message, Popconfirm } from 'antd'
-import { Link, useNavigate } from 'react-router-dom/dist'
 
 const Article = () => {
   const dispatch = useDispatch()
@@ -86,9 +86,13 @@ const Article = () => {
     }
 
     //tag
-    let articleTag = e.tagList.map((tag) => {
+    let articleTag = e.tagList.map((tag, index) => {
       if (tag.length > 0) {
-        return <div className="li__item__tag">{tag}</div>
+        return (
+          <div key={index} className="li__item__tag">
+            {tag}
+          </div>
+        )
       }
     })
 

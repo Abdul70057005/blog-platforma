@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './listArticles.css'
-import { articlesLoad, articleFavorite, articleDeleteFavorite } from '../../store/action'
 import { format } from 'date-fns'
-import { Pagination } from 'antd'
+import { Pagination, Spin } from 'antd'
 import { Link } from 'react-router-dom/dist'
-import { Spin } from 'antd'
+
+import { articlesLoad, articleFavorite, articleDeleteFavorite } from '../../store/action'
 
 const ListArticles = () => {
   const dispatch = useDispatch()
@@ -23,16 +23,14 @@ const ListArticles = () => {
   console.log(articles)
 
   useEffect(() => {
-    if(cookie.token && cookie.page) {
+    if (cookie.token && cookie.page) {
       console.log('za')
       dispatch(articlesLoad(cookie.token, cookie.page))
-    }else {
+    } else {
       console.log('va')
       dispatch(articlesLoad())
     }
   }, [])
-
-
 
   function getCookie() {
     return document.cookie.split('; ').reduce((acc, item) => {
@@ -61,11 +59,15 @@ const ListArticles = () => {
     dispatch(articlesLoad(cookie.token, page))
   }
 
-  let listArticles = articles.map((e, i) => {
+  let listArticles = articles.map((e) => {
     //tag
-    let articleTag = e.tagList.map((tag) => {
+    let articleTag = e.tagList.map((tag, i) => {
       if (tag.length > 0) {
-        return <div className="li__item__tag">{tag}</div>
+        return (
+          <div key={i} className="li__item__tag">
+            {tag}
+          </div>
+        )
       }
     })
     articleTag = articleTag.slice(0, 4)

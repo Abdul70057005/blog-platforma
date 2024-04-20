@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import './profile.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { userUpdate, userClear } from '../../store/action'
 import { useNavigate } from 'react-router-dom'
 import isUrl from 'is-url'
+
+import { userUpdate, userClear } from '../../store/action'
 
 const Profile = () => {
   const dispatch = useDispatch()
@@ -53,13 +54,13 @@ const Profile = () => {
       if (userCur.username !== userData.username) {
         setError('username', {
           type: 'manual',
-          message: "username doesn't match",
+          message: 'username doesnt match',
         })
       }
       if (userCur.email !== userData.email) {
         setError('emailAddress', {
           type: 'manual',
-          message: "email doesn't match",
+          message: 'email doesnt match',
         })
       }
     }

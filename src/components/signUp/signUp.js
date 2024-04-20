@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import './signUp.css'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom/dist'
+
 import { userRegistration, userClear } from '../../store/action'
-import { Link } from 'react-router-dom/dist'
-import { useNavigate } from 'react-router-dom/dist'
 
 const SignUp = () => {
   const dispatch = useDispatch()
@@ -180,7 +180,7 @@ const SignUp = () => {
             Create
           </button>
           <div className="signUp__form__label__text">
-            Don't an account?{' '}
+            Don`t an account?{' '}
             <Link to="/sign-in" className="url__sign-in">
               {' '}
               Sign In

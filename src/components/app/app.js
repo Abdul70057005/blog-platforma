@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom/dist'
+import { useSelector, useDispatch } from 'react-redux'
+
 import ListArticles from '../listArticles'
 import './app.css'
-import { BrowserRouter } from 'react-router-dom/dist'
-import { Routes, Route, Link } from 'react-router-dom/dist'
 import Article from '../article'
 import SignIn from '../signIn/signIn'
 import SignUp from '../signUp/signUp'
@@ -10,7 +11,6 @@ import Profile from '../profile/profile'
 import NewArticle from '../newArticle/newArticle'
 import ArticleEdit from '../articleEdit/articleEdit'
 import RequireAuth from '../requireAuth'
-import { useSelector, useDispatch } from 'react-redux'
 import { userCurrent, logOut, articlesLoad } from '../../store/action'
 
 const App = () => {
