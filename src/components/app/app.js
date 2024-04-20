@@ -44,6 +44,8 @@ const App = () => {
   const handleLogOut = () => {
     dispatch(logOut())
     document.cookie = `token=;page=;expires=${new Date(0)}`
+    console.log(cookie)
+    console.log(document.cookie)
     //dispatch(articlesLoad())
   }
 
