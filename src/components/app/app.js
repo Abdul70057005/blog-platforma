@@ -51,7 +51,7 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/blog-platforma/">
       <div className="blog">
         {!userCur ? (
           <header className="blog__header">
