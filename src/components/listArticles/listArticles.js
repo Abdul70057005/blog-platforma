@@ -34,8 +34,11 @@ const ListArticles = () => {
   }, [])*/
 
   useEffect(() => {
-    if (userCur) {
+    /*if (userCur) {
       dispatch(articlesLoad(cookie.token, cookie.page))
+    }*/
+    if (userCur) {
+      dispatch(articlesLoad(localStorage.getItem('token'), cookie.page))
     }
     if (!userCur) {
       dispatch(articlesLoad())
@@ -53,20 +56,24 @@ const ListArticles = () => {
   console.log(cookie)
 
   useEffect(() => {
-    dispatch(articlesLoad(cookie.token))
+    //dispatch(articlesLoad(cookie.token))
+    dispatch(articlesLoad(localStorage.getItem('token')))
   }, [favoriteArticle, deleteFavoriteArticle])
 
   const handleFavoriteArticle = (slug) => {
-    dispatch(articleFavorite(slug, cookie.token))
+    //dispatch(articleFavorite(slug, cookie.token))
+    dispatch(articleFavorite(slug, localStorage.getItem('token')))
   }
 
   const handleDeleteFavoriteArticle = (slug) => {
-    dispatch(articleDeleteFavorite(slug, cookie.token))
+    //dispatch(articleDeleteFavorite(slug, cookie.token))
+    dispatch(articleDeleteFavorite(slug, localStorage.getItem('token')))
   }
 
   const handlePagination = (page) => {
     document.cookie = `page=${page}; path=/`
-    dispatch(articlesLoad(cookie.token, page))
+    //dispatch(articlesLoad(cookie.token, page))
+    dispatch(articlesLoad(localStorage.getItem('token'), page))
   }
 
   let listArticles = articles.map((e) => {

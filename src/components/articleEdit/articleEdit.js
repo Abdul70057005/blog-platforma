@@ -46,16 +46,17 @@ const ArticleEdit = () => {
       body: data.text,
       tagList: data.tags.map((e) => Object.values(e).join()),
     }
-    function getCookie() {
+    /*function getCookie() {
       return document.cookie.split('; ').reduce((acc, item) => {
         const [name, value] = item.split('=')
         acc[name] = value
         return acc
       }, {})
     }
-    const cookie = getCookie()
+    const cookie = getCookie()*/
 
-    dispatch(articleUpdate(article, userData, cookie.token))
+    //dispatch(articleUpdate(article, userData, cookie.token))
+    dispatch(articleUpdate(article, userData, localStorage.getItem('token')))
   }
 
   useEffect(() => {

@@ -47,13 +47,14 @@ const SignIn = () => {
     }
 
     if (userLog !== null && userLogError === null) {
-      document.cookie = `token=${userLog.token}; path=/`
+      //document.cookie = `token=${userLog.token}; path=/`
+      localStorage.setItem('token', userLog.token)
       goHome()
       reset()
       dispatch(userClear())
     }
 
-    function getCookie() {
+    /*function getCookie() {
       return document.cookie.split('; ').reduce((acc, item) => {
         const [name, value] = item.split('=')
         acc[name] = value
@@ -63,6 +64,10 @@ const SignIn = () => {
     const cookie = getCookie()
     if (cookie.token) {
       dispatch(userCurrent(cookie.token))
+    }*/
+    if (localStorage.getItem('token')) {
+      console.log(localStorage.getItem('token'))
+      dispatch(userCurrent(localStorage.getItem('token')))
     }
   }, [userLogError, userLog])
 

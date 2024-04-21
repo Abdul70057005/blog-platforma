@@ -32,14 +32,14 @@ const Profile = () => {
     },
   })
 
-  function getCookie() {
+  /*function getCookie() {
     return document.cookie.split('; ').reduce((acc, item) => {
       const [name, value] = item.split('=')
       acc[name] = value
       return acc
     }, {})
   }
-  const cookie = getCookie()
+  const cookie = getCookie()*/
 
   const onSubmit = (data) => {
     const userData = {
@@ -49,7 +49,8 @@ const Profile = () => {
       image: data.avatar,
     }
     if (userCur.username === userData.username && userCur.email === userData.email) {
-      dispatch(userUpdate(userData, cookie.token))
+      //dispatch(userUpdate(userData, cookie.token))
+      dispatch(userUpdate(userData, localStorage.getItem('token')))
     } else {
       if (userCur.username !== userData.username) {
         setError('username', {

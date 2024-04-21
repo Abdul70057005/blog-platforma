@@ -39,7 +39,8 @@ const Article = () => {
   const { article } = useParams()
 
   useEffect(() => {
-    dispatch(articleLoad(article, cookie.token))
+    /*dispatch(articleLoad(article, cookie.token))*/
+    dispatch(articleLoad(article, localStorage.getItem('token')))
   }, [article])
 
   useEffect(() => {
@@ -50,7 +51,8 @@ const Article = () => {
   }, [deleteArticle, deleteArticleError])
 
   useEffect(() => {
-    dispatch(articleLoad(article, cookie.token))
+    /*dispatch(articleLoad(article, cookie.token))*/
+    dispatch(articleLoad(article, localStorage.getItem('token')))
   }, [favoriteArticle, deleteFavoriteArticle])
 
   if (e) {
@@ -68,7 +70,8 @@ const Article = () => {
       console.log(a)
       message.success('delete')
       console.log(cookie.token)
-      dispatch(articleDelete(e.slug, cookie.token))
+      //dispatch(articleDelete(e.slug, cookie.token))
+      dispatch(articleDelete(e.slug, localStorage.getItem('token')))
     }
     const cancel = (a) => {
       console.log(a)
@@ -77,11 +80,13 @@ const Article = () => {
 
     // like
     const handleFavoriteArticle = (slug) => {
-      dispatch(articleFavorite(slug, cookie.token))
+      //dispatch(articleFavorite(slug, cookie.token))
+      dispatch(articleFavorite(slug, localStorage.getItem('token')))
     }
 
     const handleDeleteFavoriteArticle = (slug) => {
-      dispatch(articleDeleteFavorite(slug, cookie.token))
+      //dispatch(articleDeleteFavorite(slug, cookie.token))
+      dispatch(articleDeleteFavorite(slug, localStorage.getItem('token')))
     }
 
     //tag

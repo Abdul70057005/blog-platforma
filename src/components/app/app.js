@@ -19,7 +19,7 @@ const App = () => {
   const updateUser = useSelector((state) => state.listArticles.userUpdate)
   console.log(userCur)
 
-  function getCookie() {
+  /*function getCookie() {
     return document.cookie.split('; ').reduce((acc, item) => {
       const [name, value] = item.split('=')
       acc[name] = value
@@ -27,25 +27,32 @@ const App = () => {
     }, {})
   }
   const cookie = getCookie()
-  console.log(cookie.token)
+  console.log(cookie.token)*/
 
   useEffect(() => {
-    if (cookie.token) {
+    /*if (cookie.token) {
       dispatch(userCurrent(cookie.token))
+    }*/
+    if (localStorage.getItem('token')) {
+      dispatch(userCurrent(localStorage.getItem('token')))
     }
   }, [])
 
   useEffect(() => {
-    if (cookie.token) {
+    /*if (cookie.token) {
       dispatch(userCurrent(cookie.token))
+    }*/
+    if (localStorage.getItem('token')) {
+      dispatch(userCurrent(localStorage.getItem('token')))
     }
   }, [updateUser])
 
   const handleLogOut = () => {
     dispatch(logOut())
     document.cookie = `token=;expires=${new Date(0)}`
+    localStorage.clear()
     dispatch(articlesLoad())
-    console.log(cookie)
+    //console.log(cookie)
     console.log(document.cookie)
     //dispatch(articlesLoad())
   }
