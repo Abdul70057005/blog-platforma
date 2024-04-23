@@ -30,13 +30,16 @@ const ArticleEdit = () => {
       title: e?.title,
       shortDescription: e?.description,
       text: e?.body,
-      tags: [],
+      tags: [{ name: '' }],
     },
   })
 
   const { fields, append, remove } = useFieldArray({
     name: 'tags',
     control,
+    rules: {
+      required: 'please append at least 1 tag',
+    },
   })
 
   const onSubmit = (data) => {
@@ -80,6 +83,10 @@ const ArticleEdit = () => {
                   value: true,
                   message: 'requied to fill out',
                 },
+                pattern: {
+                  value: /\S/,
+                  message: 'field cannot consist only of spaces',
+                },
                 maxLength: {
                   value: 20,
                   message: 'maximum 20 characters',
@@ -100,6 +107,10 @@ const ArticleEdit = () => {
                   value: true,
                   message: 'requied to fill out',
                 },
+                pattern: {
+                  value: /\S/,
+                  message: 'field cannot consist only of spaces',
+                },
               })}
               style={{ borderColor: errors.shortDescription ? 'red' : 'initial' }}
               placeholder="Short description"
@@ -117,6 +128,10 @@ const ArticleEdit = () => {
                   value: true,
                   message: 'requied to fill out',
                 },
+                pattern: {
+                  value: /\S/,
+                  message: 'field cannot consist only of spaces',
+                },
               })}
               style={{ borderColor: errors.text ? 'red' : 'initial' }}
               placeholder="Text"
@@ -131,21 +146,41 @@ const ArticleEdit = () => {
               {fields.map((field, i) => {
                 return (
                   <div key={field.id} className="articleEdit__form__label__wrapper">
-                    <input
-                      {...register(`tags.${i}.name`)}
-                      placeholder="Tag"
-                      className="articleEdit__form__label__input__tags"
-                    />
-                    <div
-                      type="submit"
-                      className="articleEdit__form__label__wrapper__button--delete"
-                      onClick={() => remove(i)}
-                    >
-                      Delete
+                    <div className="articleEdit__form__label__wrapper__input">
+                      <input
+                        {...register(`tags.${i}.name`, {
+                          required: {
+                            value: true,
+                            message: 'requied to fill out',
+                          },
+                          pattern: {
+                            value: /\S/,
+                            message: 'field cannot consist only of spaces',
+                          },
+                        })}
+                        style={{
+                          borderColor: errors?.tags && errors?.tags[i] && errors?.tags[i].name ? 'red' : 'initial',
+                        }}
+                        placeholder="Tag"
+                        className="articleEdit__form__label__input__tags"
+                      />
+                      <div
+                        type="submit"
+                        className="articleEdit__form__label__wrapper__button--delete"
+                        onClick={() => remove(i)}
+                      >
+                        Delete
+                      </div>
                     </div>
+                    <span className="articleEdit__form__error__tags">
+                      {errors?.tags && errors?.tags[i] && errors?.tags[i].name && (
+                        <p>required field or field consists only of spaces</p>
+                      )}
+                    </span>
                   </div>
                 )
               })}
+              <span className="articleEdit__form__error__tags--length">{errors.tags?.root?.message}</span>
               <div type="submit" className="articleEdit__form__label__wrapper__button--add" onClick={() => append({})}>
                 Add Tag
               </div>

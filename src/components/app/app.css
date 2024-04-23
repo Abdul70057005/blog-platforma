@@ -21,26 +21,41 @@
 
 .blog__header__item__elem {
   display: flex;
-  width: max-content;
   padding-left: 15px;
   padding-right: 15px;
-  height: 51px;
+  height: 31px;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   color: black;
+
 }
 
-.blog__header__item__elem:hover {
+.blog__header__item__elem--create {
+  display: flex;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 31px;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
   border: 1px solid #52c41a;
   color: #52c41a;
+  margin-top: 8px;
+}
+
+.blog__header__item__elem--user {
+  display: flex;
+  column-gap: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
 .logout {
+  width: 109px;
+  height: 50px;
+  background-color: #ffffff;
   border: 1px solid black;
-}
-
-.user {
-  display: flex;
-  column-gap: 15px;
+  border-radius: 5px;
+  cursor: pointer;
 }

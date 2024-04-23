@@ -13,6 +13,8 @@ import ArticleEdit from '../articleEdit/articleEdit'
 import RequireAuth from '../requireAuth'
 import { userCurrent, logOut, articlesLoad } from '../../store/action'
 
+import photo from './Rectangle 1.png'
+
 const App = () => {
   const dispatch = useDispatch()
   const userCur = useSelector((state) => state.listArticles.userCurrent)
@@ -76,16 +78,20 @@ const App = () => {
           <header className="blog__header">
             <div className="blog__header__item--login">Realworld Blog</div>
             <div className="blog__header__item">
-              <Link to="/new-article" className="blog__header__item__elem">
+              <Link to="/new-article" className="blog__header__item__elem--create">
                 create Article
               </Link>
-              <div className="blog__header__item__elem user">
+              <div className="blog__header__item__elem--user">
                 <div>{userCur?.username}</div>
                 <Link to="/profile">
-                  <img src={userCur?.image} alt="a" width={'46px'} height={'46px'} />
+                  {!userCur?.image ? (
+                    <img src={photo} alt="a" width={'46px'} height={'46px'} />
+                  ) : (
+                    <img src={userCur?.image} alt="a" width={'46px'} height={'46px'} />
+                  )}
                 </Link>
               </div>
-              <button className="blog__header__item__elem logout" onClick={handleLogOut}>
+              <button className=" logout" onClick={handleLogOut}>
                 Log Out
               </button>
             </div>

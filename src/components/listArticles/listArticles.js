@@ -121,7 +121,7 @@ const ListArticles = () => {
             </div>
           </div>
           <div className="li__item__tag-list">
-            {e.tagList.length > 0 ? articleTag : <div className="li__item__tag">нет тегов</div>}
+            {e.tagList.length > 0 ? articleTag : /*<div className="li__item__tag">нет тегов</div>*/ <></>}
           </div>
           <div className="li__item__text">
             {e?.description.length > 120 ? e.description.slice(0, 121) : e.description}

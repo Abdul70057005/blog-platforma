@@ -55,7 +55,7 @@
 .newArticle__form__label__wrap {
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 25px;
 }
 
 .newArticle__form__label__input__text {
@@ -81,7 +81,7 @@
 
 .newArticle__form__label__wrapper {
   display: flex;
-  column-gap: 15px;
+  flex-direction: column;
 }
 
 .newArticle__form__label__wrapper__button--add {
@@ -93,6 +93,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }
 
 .newArticle__form__label__wrapper__button--delete {
@@ -109,4 +110,22 @@
   color: red;
   margin-top: 175px;
   position: absolute;
+}
+
+.newArticle__form__error__tags {
+  color: red;
+  margin-top: 1%;
+  position: absolute;
+}
+
+.newArticle__form__error__tags--length {
+  color: red;
+  margin-top: -0.2%;
+  position: absolute;
+}
+
+.newArticle__form__label__wrapper__input {
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
 }

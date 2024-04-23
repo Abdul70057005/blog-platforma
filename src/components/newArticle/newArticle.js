@@ -25,13 +25,16 @@ const NewArticle = () => {
   } = useForm({
     mode: 'onChange',
     defaultValues: {
-      tags: [],
+      tags: [{ name: '' }],
     },
   })
 
   const { fields, append, remove } = useFieldArray({
     name: 'tags',
     control,
+    rules: {
+      required: 'please append at least 1 tag',
+    },
   })
 
   const onSubmit = (data) => {
@@ -39,7 +42,7 @@ const NewArticle = () => {
       title: data.title,
       description: data.shortDescription,
       body: data.text,
-      tagList: data.tags.map((e) => Object.values(e).join()),
+      tagList: data.tags?.map((e) => Object.values(e).join()),
     }
     /*function getCookie() {
       return document.cookie.split('; ').reduce((acc, item) => {
@@ -80,6 +83,10 @@ const NewArticle = () => {
                   value: 20,
                   message: 'maximum 20 characters',
                 },
+                pattern: {
+                  value: /\S/,
+                  message: 'field cannot consist only of spaces',
+                },
               })}
               style={{ borderColor: errors.title ? 'red' : 'initial' }}
               placeholder="Title"
@@ -95,6 +102,10 @@ const NewArticle = () => {
                 required: {
                   value: true,
                   message: 'requied to fill out',
+                },
+                pattern: {
+                  value: /\S/,
+                  message: 'field cannot consist only of spaces',
                 },
               })}
               style={{ borderColor: errors.shortDescription ? 'red' : 'initial' }}
@@ -113,6 +124,10 @@ const NewArticle = () => {
                   value: true,
                   message: 'requied to fill out',
                 },
+                pattern: {
+                  value: /\S/,
+                  message: 'field cannot consist only of spaces',
+                },
               })}
               style={{ borderColor: errors.text ? 'red' : 'initial' }}
               placeholder="Text"
@@ -127,21 +142,41 @@ const NewArticle = () => {
               {fields.map((field, i) => {
                 return (
                   <div key={field.id} className="newArticle__form__label__wrapper">
-                    <input
-                      {...register(`tags.${i}.name`)}
-                      placeholder="Tag"
-                      className="newArticle__form__label__input__tags"
-                    />
-                    <div
-                      type="submit"
-                      className="newArticle__form__label__wrapper__button--delete"
-                      onClick={() => remove(i)}
-                    >
-                      Delete
+                    <div className="newArticle__form__label__wrapper__input">
+                      <input
+                        {...register(`tags.${i}.name`, {
+                          required: {
+                            value: true,
+                            message: 'requied to fill out iuuuuuu',
+                          },
+                          pattern: {
+                            value: /\S/,
+                            message: 'field cannot consist only of spaces',
+                          },
+                        })}
+                        style={{
+                          borderColor: errors?.tags && errors?.tags[i] && errors?.tags[i].name ? 'red' : 'initial',
+                        }}
+                        placeholder="Tag"
+                        className="newArticle__form__label__input__tags"
+                      />
+                      <div
+                        type="submit"
+                        className="newArticle__form__label__wrapper__button--delete"
+                        onClick={() => remove(i)}
+                      >
+                        Delete
+                      </div>
                     </div>
+                    <span className="newArticle__form__error__tags">
+                      {errors?.tags && errors?.tags[i] && errors?.tags[i].name && (
+                        <p>required field or field consists only of spaces</p>
+                      )}
+                    </span>
                   </div>
                 )
               })}
+              <span className="newArticle__form__error__tags--length">{errors.tags?.root?.message}</span>
               <div type="submit" className="newArticle__form__label__wrapper__button--add" onClick={() => append({})}>
                 Add Tag
               </div>
@@ -157,3 +192,20 @@ const NewArticle = () => {
 }
 
 export default NewArticle
+
+/*
+<>
+                <input
+                  {...register('tags', {
+                    required: {
+                      value: true,
+                      message: 'requied to fill out',
+                    },
+                  })}
+                  style={{ borderColor: errors?.tags ? 'red' : 'initial' }}
+                  placeholder="Tag"
+                  className="newArticle__form__label__input__tags"
+                />
+                <span className="newArticle__form__error__tags">{errors?.tags && <p>{errors.tags.message}</p>}</span>
+              </>
+              */
